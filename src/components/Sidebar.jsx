@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import useUserStore from '../store/useUserStore';
 
-const Sidebar = () => {
+const Sidebar = ({ onClose }) => {
   const { logout } = useUserStore();
 
   const sections = [
@@ -50,8 +50,12 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="fixed top-16 bottom-0 left-0 w-60 border-r border-border-dim bg-navy overflow-y-auto hidden md:block">
+    <aside className="h-full w-full border-r border-border-dim bg-navy overflow-y-auto">
       <div className="py-6">
+        <div className="px-6 mb-8 md:hidden flex items-center justify-between">
+           <span className="font-syne font-bold text-teal tracking-widest text-lg italic">SHEild</span>
+        </div>
+
         {sections.map((section) => (
           <div key={section.label} className="mb-8">
             <h3 className="px-6 mb-3 text-[10px] font-bold tracking-widest text-ivory/40 uppercase">
@@ -62,6 +66,7 @@ const Sidebar = () => {
                 <NavLink
                   key={item.name}
                   to={item.path}
+                  onClick={onClose}
                   className={({ isActive }) => 
                     `flex items-center gap-3 px-6 py-2.5 transition-all group relative ${
                       isActive 
@@ -87,7 +92,10 @@ const Sidebar = () => {
         
         <div className="px-6 mt-8">
           <button 
-            onClick={logout}
+            onClick={() => {
+              logout();
+              if (onClose) onClose();
+            }}
             className="flex items-center gap-3 text-ivory/60 hover:text-red transition-colors w-full text-left py-2"
           >
             <LogOut className="w-5 h-5" />
