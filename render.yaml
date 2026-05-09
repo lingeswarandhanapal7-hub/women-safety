@@ -1,4 +1,5 @@
 services:
+  # Backend API
   - type: web
     name: sheild-api
     env: node
@@ -31,3 +32,20 @@ services:
         sync: false
       - key: CLIENT_URL
         sync: false
+
+  # Frontend Static Site
+  - type: static
+    name: sheild-app
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishDir: dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: sheild-api
+          property: host
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
