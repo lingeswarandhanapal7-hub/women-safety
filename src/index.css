@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Syne:wght@600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #0D1F2D;
+  --red: #E63946;
+  --teal: #2EC4B6;
+  --ivory: #F4F1DE;
+  --navy-glass: rgba(13, 31, 45, 0.75);
+  --red-glow: rgba(230, 57, 70, 0.25);
+  --teal-glow: rgba(46, 196, 182, 0.25);
+  --border-dim: rgba(255, 255, 255, 0.08);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+  background: var(--navy);
+  color: var(--ivory);
+  font-family: 'DM Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .font-syne {
+  font-family: 'Syne', sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: var(--navy-glass);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-dim);
+  border-radius: 16px;
+}
+
+/* Custom scrollbar for navy theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--navy);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-dim);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Map explicit height */
+.map-container {
+  height: 420px;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border-dim);
+}
+
+/* Button styles */
+.btn-red {
+  background: var(--red);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-red:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+.btn-teal-outline {
+  border: 2px solid var(--teal);
+  color: var(--teal);
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-teal-outline:hover {
+  background: var(--teal-glow);
+  transform: translateY(-2px);
+}
